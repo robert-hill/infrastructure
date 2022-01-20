@@ -32,6 +32,16 @@ resource "aws_route53_record" "main" {
 
 resource "aws_route53_record" "decentlabs_txt" {
   zone_id = aws_route53_zone.decentlabs.id
+  name    = data.aws_route53_zone.decentlabs.name
+  type    = "TXT"
+  records = [
+    "v=spf1 include:_spf.google.com ~all"
+  ]
+  ttl = var.standard_ttl
+}
+
+resource "aws_route53_record" "decentlabs_gsuite_dkim" {
+  zone_id = aws_route53_zone.decentlabs.id
   name    = "google._domainkey.${data.aws_route53_zone.decentlabs.name}"
   type    = "TXT"
   records = [

@@ -37,6 +37,16 @@ jobs:
       id: validate
       run: terraform validate -no-color
 
+    - name: Run tfsec
+      uses: tfsec/tfsec-sarif-action@9a83b5c3524f825c020e356335855741fd02745f
+      with:
+        sarif_file: tfsec.sarif         
+
+    - name: Upload SARIF file
+      uses: github/codeql-action/upload-sarif@v1
+      with:
+        sarif_file: tfsec.sarif  
+
     - name: Terraform Plan
       id: plan
       if: github.event_name == 'pull_request'

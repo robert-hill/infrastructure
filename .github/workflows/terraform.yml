@@ -76,17 +76,6 @@ jobs:
       if: steps.plan.outcome == 'failure' || steps.fmt.outcome == 'failure'
       run: exit 1
 
-    - name: Run tfsec
-      uses: tfsec/tfsec-sarif-action@9a83b5c3524f825c020e356335855741fd02745f
-      with:
-        sarif_file: tfsec.sarif         
-
-    - name: Upload SARIF file
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        # Path to SARIF file relative to the root of the repository
-        sarif_file: tfsec.sarif  
-
     - name: Terraform Apply
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
       run: terraform apply -auto-approve

@@ -1,5 +1,5 @@
 data "aws_route53_zone" "decentlabs" {
-  name = "decentlabs.com"
+  name = aws_route53_zone.decentlabs.name
 }
 
 data "aws_s3_bucket" "terraform" {

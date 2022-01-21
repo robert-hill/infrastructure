@@ -15,6 +15,7 @@ jobs:
       contents: read
       id-token: write
       pull-requests: write
+      security-events: write
     runs-on: ubuntu-latest
     defaults:
       run:

@@ -11,6 +11,9 @@ on:
 jobs: 
   terraform-production:
     name: "Terraform - Production"
+    permissions:
+      contents: read
+      id-token: write
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -23,6 +26,7 @@ jobs:
       with: 
         aws-region: us-west-2
         role-to-assume: "arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/github"
+    - run: aws sts get-caller-identity
 
     - name: Terraform fmt
       id: fmt

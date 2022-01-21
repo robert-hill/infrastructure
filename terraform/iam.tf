@@ -1,5 +1,5 @@
 module "aws_oidc_github" {
-  source = "modules/terraform-aws-oidc-github"
+  source = "./modules/terraform-aws-oidc-github"
 
   github_organisation     = "robert-hill"
   github_repositories     = ["robertallenhill.com", "n0syn.com", "infrastructure"]
